@@ -1,0 +1,71 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://primefaces.org/ui">
+
+    <h:outputStylesheet library = "css" name = "styles.css"/>
+
+    <h:head>
+        <title>Eso es!</title>
+    </h:head>
+
+    <h:body>
+
+        <!--Panel grid-->
+        <p:panelGrid columns="4" layout="grid" styleClass="showcase-text-align-center">
+
+                <p:outputLabel  value="Primer Nombre"/>
+                <p:inputText value="#{danielController.itNombre1}"/>
+
+                <p:outputLabel  value="Segundo Nombre"/>
+                <p:inputText  value="#{danielController.itNombre2}"/>
+
+                <p:outputLabel  value="Primer Apellido"/>
+                <p:inputText  value="#{danielController.itApellido1}"/>
+
+                <p:outputLabel value="Segundo Apellido"/>
+                <p:inputText  value="#{danielController.itApellido2}"/>
+
+                <p:outputLabel value="Cedula"/>
+                <p:inputText value="#{danielController.itCedula}"/>
+
+                <p:outputLabel  value="Edad"/>
+                <p:inputNumber  value="#{danielController.itSexo}" minValue="1" decimalPlaces="0" />
+
+                <p:outputLabel  value="Sexo"/>
+                <p:inputText  value="#{danielController.itSexo}"/>
+        </p:panelGrid>
+
+
+<span class="ui-float-label">
+<p:commandButton
+             value="Success"
+             styleClass="rounded-button ui-button-success" />
+<h:commandButton value="Guardar"
+                 actionExpression="#{danielController.guardar}"
+                 styleClass="rounded-button ui-button-success"/>
+
+</span>
+
+        <!-- Datatable -->
+        <p:dataTable var="data" value="#{danielController.lista}">
+            <p:column headerText="Code">
+                <h:outputText value="#{data.code}" />
+            </p:column>
+
+            <p:column headerText="Name">
+                <h:outputText value="#{data.name}" />
+            </p:column>
+
+            <p:column headerText="Category">
+                <h:outputText value="#{data.category}" />
+            </p:column>
+
+            <p:column headerText="Quantity">
+                <h:outputText value="#{data.quantity}" />
+            </p:column>
+        </p:dataTable>
+    </h:body>
+</f:view>
