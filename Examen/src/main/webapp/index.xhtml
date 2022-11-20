@@ -4,68 +4,85 @@
         xmlns:h="http://java.sun.com/jsf/html"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://primefaces.org/ui">
-
-    <h:outputStylesheet library = "css" name = "styles.css"/>
+    <html>
 
     <h:head>
-        <title>Eso es!</title>
+        <title>Cliente Daniel</title>
     </h:head>
 
     <h:body>
 
-        <!--Panel grid-->
-        <p:panelGrid columns="4" layout="grid" styleClass="showcase-text-align-center">
+        <h:form id="formulario">
+            <p:panel>
+                <f:facet name="header">
+                    <p:outputLabel value="Formulario de Ingreso de Datos" style="float: left"/>
 
-                <p:outputLabel  value="Primer Nombre"/>
-                <p:inputText value="#{danielController.itNombre1}"/>
+                    <p:growl id="growl" showDetail="true" />
+                    <p:commandButton
+                            value="Guardar"
+                            update="formulario growl"
+                            style="float: right"
+                            actionListener="#{personaBean.guardar}"/>
+                </f:facet>
 
-                <p:outputLabel  value="Segundo Nombre"/>
-                <p:inputText  value="#{danielController.itNombre2}"/>
+                <!--Panel grid-->
+                <p:panelGrid columns="4" layout="grid">
 
-                <p:outputLabel  value="Primer Apellido"/>
-                <p:inputText  value="#{danielController.itApellido1}"/>
+                    <p:outputLabel value="Primer Nombre"/>
+                    <p:inputText value="#{personaBean.primerNombre}"/>
 
-                <p:outputLabel value="Segundo Apellido"/>
-                <p:inputText  value="#{danielController.itApellido2}"/>
+                    <p:outputLabel value="Segundo Nombre"/>
+                    <p:inputText value="#{personaBean.segundoNombre}"/>
 
-                <p:outputLabel value="Cedula"/>
-                <p:inputText value="#{danielController.itCedula}"/>
+                    <p:outputLabel value="Primer Apellido"/>
+                    <p:inputText value="#{personaBean.primerApellido}"/>
 
-                <p:outputLabel  value="Edad"/>
-                <p:inputNumber  value="#{danielController.itSexo}" minValue="1" decimalPlaces="0" />
+                    <p:outputLabel value="Segundo Apellido"/>
+                    <p:inputText value="#{personaBean.segundoApellido}"/>
 
-                <p:outputLabel  value="Sexo"/>
-                <p:inputText  value="#{danielController.itSexo}"/>
-        </p:panelGrid>
+                    <p:outputLabel value="fecha Nacimiento"/>
+                    <p:datePicker value="#{personaBean.fechaNacimiento}"/>
 
+                    <p:outputLabel value="Tipo Persona"/>
+                    <p:inputText value="#{personaBean.refTipoPersona}"/>
 
-<span class="ui-float-label">
-<p:commandButton
-             value="Success"
-             styleClass="rounded-button ui-button-success" />
-<h:commandButton value="Guardar"
-                 actionExpression="#{danielController.guardar}"
-                 styleClass="rounded-button ui-button-success"/>
+                </p:panelGrid>
 
-</span>
+                <p:dataTable var="data"
+                             id="tabla"
+                             widgetVar="tabla"
+                             paginator="true"
+                             rows="5"
+                             value="#{personaBean.lista}">
+                    <p:column headerText="Primer Nombre">
+                        <h:outputText value="#{data.primerNombre}"/>
+                    </p:column>
 
-        <!-- Datatable -->
-        <p:dataTable var="data" value="#{danielController.lista}">
-            <p:column headerText="Code">
-                <h:outputText value="#{data.code}" />
-            </p:column>
+                    <p:column headerText="Segundo Nombre">
+                        <h:outputText value="#{data.segundoNombre}"/>
+                    </p:column>
 
-            <p:column headerText="Name">
-                <h:outputText value="#{data.name}" />
-            </p:column>
+                    <p:column headerText="Primer Apellido">
+                        <h:outputText value="#{data.primerApellido}"/>
+                    </p:column>
 
-            <p:column headerText="Category">
-                <h:outputText value="#{data.category}" />
-            </p:column>
+                    <p:column headerText="Segundo Apellido">
+                        <h:outputText value="#{data.segundoApellido}"/>
+                    </p:column>
 
-            <p:column headerText="Quantity">
-                <h:outputText value="#{data.quantity}" />
-            </p:column>
-        </p:dataTable>
+                    <p:column headerText="Fecha Nacimiento">
+                        <h:outputText value="#{data.fechaNacimiento}"/>
+                    </p:column>
+
+                    <p:column headerText="Tipo Persona">
+                        <h:outputText value="#{data.refTipoPersona}"/>
+                    </p:column>
+
+                </p:dataTable>
+
+            </p:panel>
+        </h:form>
     </h:body>
+
+    </html>
 </f:view>
